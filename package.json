@@ -1,0 +1,10 @@
+{
+  "name": "within-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Voice/Telegram -> router -> GitHub. Φάση 1 του Within OS.",
+  "engines": {
+    "node": ">=18"
+  }
+}

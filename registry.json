@@ -1,0 +1,37 @@
+{
+  "projects": [
+    {
+      "id": "wosio",
+      "name": "Wosio",
+      "repo": "prokopiskou/Washio",
+      "stack": "TODO: π.χ. Next.js + Supabase + Vercel",
+      "description": "TODO: τι είναι το Wosio σε 1 πρόταση",
+      "keywords": ["wosio", "washio", "γουόσιο", "ουόσιο"]
+    },
+    {
+      "id": "ws-site",
+      "name": "Within Success Site",
+      "repo": "prokopiskou/withinsuccess",
+      "stack": "TODO: π.χ. Next.js + Vercel",
+      "description": "Το κεντρικό site του WithinSuccess",
+      "keywords": ["within success", "ws site", "site", "withinsuccess", "σαιτ", "ιστοσελιδα"]
+    },
+    {
+      "id": "within-path",
+      "name": "Within Path",
+      "repo": "prokopiskou/withinsuccess",
+      "pathHint": "TODO: ο φάκελος μέσα στο site, π.χ. app/within-path ή components/path",
+      "stack": "Ίδιο με WS Site (ζει μέσα στο site repo)",
+      "description": "Το framework Within Path — sub-project μέσα στο WS Site repo",
+      "keywords": ["within path", "path", "γουιθιν παθ"]
+    },
+    {
+      "id": "within-app",
+      "name": "Within App",
+      "repo": "prokopiskou/lifeos",
+      "stack": "TODO: π.χ. Next.js + Supabase + Vercel",
+      "description": "Η εφαρμογή του WithinSuccess (υπό κατασκευή)",
+      "keywords": ["within app", "app", "εφαρμογη", "απ", "lifeos", "life os"]
+    }
+  ]
+}
