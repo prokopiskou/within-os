@@ -56,15 +56,7 @@ export default async function handler(req, res) {
       return res.status(200).send("ok");
     }
 
-    // --- 3. Clarify gate: αν δεν είναι ξεκάθαρο, ρώτα, μην ανοίξεις issue ---
-    if (r.clear === false && r.clarifyQuestion) {
-      await sendMessage(
-        chatId,
-        `🤔 *${r.project.name}* — χρειάζομαι μια διευκρίνιση:\n\n${r.clarifyQuestion}\n\n_(Στείλε ξανά την εντολή με την απάντηση μέσα.)_`
-      );
-      return res.status(200).send("ok");
-    }
-
+    // --- 3. Πάντα καταγράφει. Καμία ερώτηση, μηδέν τριβή. ---
     if (r.confidence < 0.6) {
       await sendMessage(
         chatId,
@@ -72,16 +64,20 @@ export default async function handler(req, res) {
       );
     }
 
-    // --- 4. Άνοιξε issue ---
+    // --- 4. Άνοιξε issue (τυχόν ασάφειες μπαίνουν ΜΕΣΑ στο ticket) ---
     const pathNote = r.project.pathHint
       ? `\n\n📁 Path scope: \`${r.project.pathHint}\``
       : "";
     const voiceNote = viaVoice ? `\n\n🎙️ _Από φωνή: "${text}"_` : "";
+    const questions =
+      Array.isArray(r.openQuestions) && r.openQuestions.length
+        ? `\n\n❓ *Ανοιχτά σημεία:*\n${r.openQuestions.map((q) => `- ${q}`).join("\n")}`
+        : "";
 
     const issue = await createIssue({
       repo: r.project.repo,
       title: `[${r.project.name}] ${r.title}`,
-      body: `${r.body}${pathNote}${voiceNote}\n\n---\n_Από Within OS via Telegram. Project: ${r.project.id} · Τύπος: ${r.type}_`,
+      body: `${r.body}${questions}${pathNote}${voiceNote}\n\n---\n_Από Within OS via Telegram. Project: ${r.project.id} · Τύπος: ${r.type}_`,
       labels: [`project:${r.project.id}`, r.type === "code" ? "code" : "task"],
     });
 
